@@ -1,7 +1,7 @@
 %% MATH562/FINAL EXAM/Biswajit Khara
 clear;
 m=500; % Number of internal grid points
-tol = 1e-9;
+tol = 1e-10;
 maxit = 100;
 % Domain distributed force
 f = 1;
@@ -111,10 +111,10 @@ while (tol > TOL)
     r = b-A*x;
     tol = norm(r);
     rnormArr(k) = tol;
-    if(mod(k,100000)==0)
-        disp(k)
-        disp(tol)
-    end
+%     if(mod(k,100000)==0)
+%         disp(k)
+%         disp(tol)
+%     end
 end
 
 if(k<maxSz)

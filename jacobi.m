@@ -8,8 +8,8 @@ maxSz = 1500000;
 rnormArr = zeros(maxSz,1);
 m = size(A,1);
 
-D = diag(diag(A));
-M = D;
+% Regular splitting, where M = diagonal of A
+M = diag(diag(A));
 N = M-A;
 
 k = 0;
