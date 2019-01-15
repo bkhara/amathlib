@@ -1,4 +1,4 @@
-function [L,U] = luNOPivot(A)
+function [L,U] = luNoPivotSimple(A)
 m = size(A,1);
 U = A;
 L = eye(m);
