@@ -1,0 +1,8 @@
+*.fig
+*.png
+*.jpg
+*.mat
+*.zip
+*.tar*
+*.eps
+*.pdf
