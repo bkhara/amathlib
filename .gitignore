@@ -6,3 +6,5 @@
 *.tar*
 *.eps
 *.pdf
+__pycache__
+
