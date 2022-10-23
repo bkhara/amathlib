@@ -63,13 +63,30 @@ class GaussQuadrature():
 		integral = np.sum(gpsum) * self.J
 		return integral
 
-	def calc_l2_distance(self, f_eval_1, f_eval_2):
+	def calc_l2_distance_v1(self, f_eval_1, f_eval_2):
+		'''
+		Use this when the signature of both f_eval_1 and f_eval_2 is given by: f(x,y) -> u
+		where x, y are usual coordinate values, and they go as separate arguments
+		'''
 		if self.dim == 1:
 			f1 = f_eval_1(self.gpx)
 			f2 = f_eval_2(self.gpx)
 		elif self.dim == 2:
 			f1 = f_eval_1(self.gpx, self.gpy)
 			f2 = f_eval_2(self.gpx, self.gpy)
+		integrand = (f1 - f2)**2
+		gpsum = self.gpw * integrand
+		integral = np.sum(gpsum) * self.J
+		return np.sqrt(integral)
+
+	def calc_l2_distance_v2(self, f_eval_1, f_eval_2):
+		'''
+		Use this when the signature of both f_eval_1 and f_eval_2 is given by: f(X) -> u
+		where X = [x,y,z]
+		'''
+		gp = np.stack((self.gpx, self.gpy),1)
+		f1 = f_eval_1(gp)
+		f2 = f_eval_2(gp)
 		integrand = (f1 - f2)**2
 		gpsum = self.gpw * integrand
 		integral = np.sum(gpsum) * self.J
