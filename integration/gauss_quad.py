@@ -82,9 +82,12 @@ class GaussQuadrature():
 	def calc_l2_distance_v2(self, f_eval_1, f_eval_2):
 		'''
 		Use this when the signature of both f_eval_1 and f_eval_2 is given by: f(X) -> u
-		where X = [x,y,z]
+		where X =[x], or [x,y] or [x,y,z]
 		'''
-		gp = np.stack((self.gpx, self.gpy),1)
+		if self.dim == 1:
+			gp = self.gpx[:, np.newaxis]
+		elif self.dim == 2:
+			gp = np.stack((self.gpx, self.gpy),1)
 		f1 = f_eval_1(gp)
 		f2 = f_eval_2(gp)
 		integrand = (f1 - f2)**2
